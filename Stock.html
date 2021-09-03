@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="stock-price-analyzer">
+    <title>stock-price-analyzer</title>
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <style>
+        h1{
+            background-color: darkcyan;
+            height: 100px;
+            margin-top: 0 !important;
+            text-align: center;
+            font-weight: bold !important;
+            padding: 30px;
+        }
+        .box{
+            margin-top: 150px;
+            margin-left: 400px;
+        }
+        .form-group1{
+            margin-left: 400px;
+            margin-top: 20px;
+        }
+        .btn{
+            margin-top: 25px;
+            margin-left: 380px;
+        }
+        p{
+            margin-left: 900px;
+        }
+
+  </style>
+</head>
+<body>
+    <h1 class="col-md-12">STOCK PRICE ANALYZER</h1>
+    <div class="row">
+        <div class="form-group box col-md-3">
+            <label for="bill">Stock Price at the Time of Purchase</label>
+            <input type="number" min="0" step="0.01" class="form-control" id="price1"/>
+        </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group1  col-md-3">
+                <label for="bill">Number of Shares Bought</label>
+                <input type="number" min="0" step="0.01" class="form-control" id="quantity"/>
+            </div>
+            </div>
+            <div class="row">
+                <div class="form-group1  col-md-3">
+                    <label for="bill" id="paid">Today's Stock Price</label>
+                    <input type="number" min="0" step="0.01" class="form-control" id="price2"/>
+                </div>
+                </div>
+        
+                <div class="form-group col-md-2">
+                <button type="button"  class="btn btn-md btn-primary form-control" onclick="myFunction()">Calculate</button>
+                </div>
+                <p id="result"></p>
+                <p id="hello"></p>
+    <script>
+        function myFunction(){
+        let n1=document.getElementById('price1').value;
+        let n=document.getElementById('quantity').value;
+        let n2=document.getElementById('price2').value;
+        let per=0,abs=0;
+        if(n1-n2>0){
+            abs=(n1-n2)*n;
+            per=(abs/50)*100;
+            if(per>50){
+                document.body.style.background = 'black';
+                document.getElementById('result').innerHTML = 'loss is: '+abs+' loss%:'+per;
+                document.getElementById("result").style.color = "red";
+                document.getElementById('hello').innerHTML ='<i class="fa fa-thumbs-down" style="font-size:48px;color:red" aria-hidden="true"></i>'
+            }
+            else{
+            document.getElementById('result').innerHTML = 'loss is: '+abs+' loss%:'+per;
+            document.getElementById('hello').innerHTML ='<i class="fa fa-thumbs-down" style="font-size:48px;color:red" aria-hidden="true"></i>'
+        }
+    }
+        else if(n1-n2<0){
+            abs=(n2-n1)*n;
+            per=(abs/50)*100;  
+            document.getElementById('result').innerHTML = 'profit is:'+abs+' profit%:'+per;
+            document.getElementById('hello').innerHTML ='<i class="fa fa-thumbs-up" style="font-size:48px;color:green" aria-hidden="true"></i>'
+        }
+        }
+    </script>
+</body>
+</html>
